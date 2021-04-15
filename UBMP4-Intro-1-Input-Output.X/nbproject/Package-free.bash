@@ -10,9 +10,9 @@ CND_CONF=free
 CND_DISTDIR=dist
 TMPDIR=build/${CND_CONF}/${IMAGE_TYPE}/tmp-packaging
 TMPDIRNAME=tmp-packaging
-OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/Intro-1-Input-Output.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-OUTPUT_BASENAME=Intro-1-Input-Output.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
-PACKAGE_TOP_DIR=intro-1-input-output.x/
+OUTPUT_PATH=dist/${CND_CONF}/${IMAGE_TYPE}/UBMP4-Intro-1-Input-Output.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+OUTPUT_BASENAME=UBMP4-Intro-1-Input-Output.X.${IMAGE_TYPE}.${OUTPUT_SUFFIX}
+PACKAGE_TOP_DIR=ubmp4-intro-1-input-output.x/
 
 # Functions
 function checkReturnCode
@@ -57,15 +57,15 @@ mkdir -p ${TMPDIR}
 
 # Copy files and create directories and links
 cd "${TOP}"
-makeDirectory ${TMPDIR}/intro-1-input-output.x/bin
+makeDirectory ${TMPDIR}/ubmp4-intro-1-input-output.x/bin
 copyFileToTmpDir "${OUTPUT_PATH}" "${TMPDIR}/${PACKAGE_TOP_DIR}bin/${OUTPUT_BASENAME}" 0755
 
 
 # Generate tar file
 cd "${TOP}"
-rm -f ${CND_DISTDIR}/${CND_CONF}/package/intro-1-input-output.x.tar
+rm -f ${CND_DISTDIR}/${CND_CONF}/package/ubmp4-intro-1-input-output.x.tar
 cd ${TMPDIR}
-tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/intro-1-input-output.x.tar *
+tar -vcf ../../../../${CND_DISTDIR}/${CND_CONF}/package/ubmp4-intro-1-input-output.x.tar *
 checkReturnCode
 
 # Cleanup
