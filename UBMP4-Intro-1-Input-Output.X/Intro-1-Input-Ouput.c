@@ -1,6 +1,6 @@
 /*==============================================================================
  Project: Intro-1-Input-Output
- Date:    April 15, 2021
+ Date:    April 30, 2021
  
  This example UBMP4 input and output program demonstrates pushbutton input, LED
  (bit) output, port latch (byte) output, time delay functions, and simple 'if'
@@ -65,7 +65,7 @@ int main(void)
 
 /* Program Analysis
  * 
- * 1. How many times do the LEDs flash when SW2 is quickly pressed an released?
+ * 1. How many times do the LEDs flash if SW2 is quickly pressed an released?
  *    How many times do the LEDs flash when SW2 is held? Looking at the program,
  *    explain why the LEDs keep flashing when SW2 is held.
  * 
