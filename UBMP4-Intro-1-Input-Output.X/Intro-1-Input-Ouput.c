@@ -1,6 +1,6 @@
 /*==============================================================================
  Project: Intro-1-Input-Output
- Date:    April 30, 2021
+ Date:    May 16, 2021
  
  This example UBMP4 input and output program demonstrates pushbutton input, LED
  (bit) output, port latch (byte) output, time delay functions, and simple 'if'
@@ -17,8 +17,8 @@
 
 #include    "UBMP4.h"           // Include UBMP4 constants and functions
 
-// TODO Set linker ROM ranges to 'default,-0-FFF' under "Memory model" pull-down.
-// TODO Set linker code offset to '1000' under "Additional options" pull-down.
+// TODO Set linker ROM ranges to 'default,-0-7FF' under "Memory model" pull-down.
+// TODO Set linker code offset to '800' under "Additional options" pull-down.
 
 // The main function is required, and the program begins executing from here.
 
@@ -54,8 +54,9 @@ int main(void)
         
         // Add code for your Program Analysis and Programming Activities here:
 
-        // Connect to USB and press and release SW1 to start the USB bootloader.
-        // After LED D1 flashes, UBMP4 will appear as USB drive 'PIC16F145X'.
+        // Connect UBMP4 to USB and press and hold SW1 to start the bootloader.
+        // After LED D1 turns off, release SW1. UBMP4 will appear as USB drive
+        // 'PIC16F1459' on your device. Drag and drop .hex files to PIC16F1459.
         if(SW1 == 0)
         {
             asm("reset");
@@ -83,7 +84,7 @@ int main(void)
  * 
  * 5. The following program code includes instructions that write to the PORTC
  *    output latches directly. Try it by copying and pasting this code below
- *    the existing  SW2 'if' structure, at the location shown by the comment.
+ *    the existing SW2 'if' structure, at the location shown by the comment.
 
         if(SW3 == 0)
         {
@@ -230,7 +231,7 @@ int main(void)
  *    program that makes a unique LED flashing pattern for each pushbutton.
  * 
  *    Test each of your flashing patterns. Describe what happens when more than
- *    one button is held.
+ *    one button is held. Do the LEDs flash all patterns at the same time?
  * 
  * 5. Create a program that makes a different tone for each pushbutton.
  * 
@@ -243,7 +244,7 @@ int main(void)
  *    even after SW3 is released, and turn off when SW4 is pressed. Test your
  *    program to make sure it works.
  * 
- * 7. Running your program from 5, above, describe what happens when both SW3
+ * 7. Running your program from 6, above, describe what happens when both SW3
  *    and SW4 are pressed. Does LED D4 stay on? If so, how did the brightness
  *    of LED D4 compare between its normal on state following SW3 being pressed
  *    to this new state when both SW3 and SW4 are bing held? Can you explain
@@ -254,4 +255,11 @@ int main(void)
  *    Using a logical conditional operator, modify the start-stop program from
  *    activity 5 to make it safer. SW3 should only turn on LED D4 if SW4 is
  *    released.
+ * 
+ * 9. LED D1 is normally used to indicate that a program is running, but it can
+ *    be controlled by your program as well. If you take a look at the UBMP4
+ *    schematic, you will see that LED D1's cathode (or negative) pin is
+ *    connected to the microcontroller instead of the anode (positive) pin as
+ *    with the other LEDs. This means that you need to make D1's output a zero
+ *    to turn D1 on. Try it ? make a program that controls LED D1.
  */
