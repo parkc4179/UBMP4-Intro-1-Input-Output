@@ -261,5 +261,5 @@ int main(void)
  *    schematic, you will see that LED D1's cathode (or negative) pin is
  *    connected to the microcontroller instead of the anode (positive) pin as
  *    with the other LEDs. This means that you need to make D1's output a zero
- *    to turn D1 on. Try it ? make a program that controls LED D1.
+ *    to turn D1 on. Try it! Make a program that controls LED D1.
  */
