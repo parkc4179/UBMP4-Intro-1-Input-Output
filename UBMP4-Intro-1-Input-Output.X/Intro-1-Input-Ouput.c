@@ -54,12 +54,13 @@ int main(void)
         
         // Add code for your Program Analysis and Programming Activities here:
 
-        // Connect UBMP4 to USB and press and hold SW1 to start the bootloader.
-        // After LED D1 turns off, release SW1. UBMP4 will appear as USB drive
-        // 'PIC16F1459' on your device. Drag and drop .hex files to PIC16F1459.
+        // Connect UBMP4 to USB. Press and release SW1 to start the bootloader.
+        // UBMP4 will appear as USB drive 'PIC16F1459' on your device. Drag and
+        // drop the .hex file from the MPLAB project's dist/free/production or
+        // dist/default/production folder on to drive 'PIC16F1459'.
         if(SW1 == 0)
         {
-            asm("reset");
+            RESET();
         }
     }
 }
