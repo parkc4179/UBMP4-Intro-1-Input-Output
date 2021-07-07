@@ -54,10 +54,7 @@ int main(void)
         
         // Add code for your Program Analysis and Programming Activities here:
 
-        // Connect UBMP4 to USB. Press and release SW1 to start the bootloader.
-        // UBMP4 will appear as USB drive 'PIC16F1459' on your device. Drag and
-        // drop the .hex file from the MPLAB project's dist/free/production or
-        // dist/default/production folder on to drive 'PIC16F1459'.
+        // Activate bootloader if SW1 is pressed.
         if(SW1 == 0)
         {
             RESET();
@@ -67,17 +64,18 @@ int main(void)
 
 /* Program Analysis
  * 
- * 1. How many times do the LEDs flash if SW2 is quickly pressed an released?
- *    How many times do the LEDs flash when SW2 is held? Looking at the program,
- *    explain why the LEDs keep flashing when SW2 is held.
+ * 1. How many times do the LEDs flash if SW2 is quickly pressed and released?
+ *    Do the LEDs keep flashing when SW2 is held? Look at the program and
+ *    explain why this happens when SW2 is held.
  * 
  * 2. Explain the difference between the statements: LED3 = 0; and LED3 = 1;
  * 
- * 3. What voltage will the microcontroller output to LED D3 when the output
- *    value is 0 (LED = 0)? What voltage will the microcontroller output to
- *    LED D3 when the output value is 1? You can confirm the output voltage
- *    with a voltmeter if you have access to one. If you did that, did the
- *    voltage match what you expected?
+ * 3. What voltage do you expect the microcontroller to output to LED D3 when
+ *    the statement LED3 = 0; runs? What voltage do you expect the output to be
+ *    when the statement LED3 = 1; runs?
+ * 
+ *    You can confirm the output voltage with a voltmeter if you have access
+ *    to one. If you tried that, did the voltage match your prediction?
  * 
  * 4. The statement 'if(SW2 == 0)' uses two equal signs, while the statement
  *    'LED3 = 1;' uses a single equal sign. What operation is performed by one
@@ -126,7 +124,7 @@ int main(void)
  * 
  *    Next, try press and holding SW4 while pressing and releasing SW3. Does it
  *    work as expected? Explain the difference in operation between the 'if' and
- *    'while' structures making the momentary button code.
+ *    'while' structures making up the momentary button code.
  * 
  * 7. Let's explore logical conditions using 'if' statements. Replace the code
  *    added in 6, above, with this nested if code to make a logical AND
@@ -149,8 +147,8 @@ int main(void)
             LED4 = 0;
         }
 
- *    Test the code to ensure it works as expected. Do you think the order of
- *    the if conditions matters? (eg. swap SW3 and SW4)?
+ *    Test the code to ensure it works as expected. Does the order of the if
+ *    conditions matter? (eg. swap the conditional checks for SW3 and SW4)
  * 
  * 8. Next, replace the code from 7 with the following code which implements a
  *    logical AND conditional operator composed of two ampersands '&&':
@@ -210,7 +208,8 @@ int main(void)
         }
 
  *    Try changing the delay values in both of the __delay_us(); functions.
- *    Does the pitch of the tone increase or decrease if delay is made smaller?
+ *    Does the pitch of the tone increase or decrease if the delay value is
+ *    made smaller?
  * 
  * 3. This code demonstrates a more compact way of toggling the beeper output
  *    using a logical NOT operator '!'. Replace the code above, with this code:
@@ -232,7 +231,8 @@ int main(void)
  *    program that makes a unique LED flashing pattern for each pushbutton.
  * 
  *    Test each of your flashing patterns. Describe what happens when more than
- *    one button is held. Do the LEDs flash all patterns at the same time?
+ *    one button is held. Do all of the patterns try to flash the LEDs at the
+ *    same time, or sequentially? Explain why this is.
  * 
  * 5. Create a program that makes a different tone for each pushbutton.
  * 
@@ -246,7 +246,7 @@ int main(void)
  *    program to make sure it works.
  * 
  * 7. Running your program from 6, above, describe what happens when both SW3
- *    and SW4 are pressed. Does LED D4 stay on? If so, how did the brightness
+ *    and SW4 are pressed. Does LED D4 stay on? If so, how does the brightness
  *    of LED D4 compare between its normal on state following SW3 being pressed
  *    to this new state when both SW3 and SW4 are bing held? Can you explain
  *    why it changes?
@@ -262,5 +262,5 @@ int main(void)
  *    schematic, you will see that LED D1's cathode (or negative) pin is
  *    connected to the microcontroller instead of the anode (positive) pin as
  *    with the other LEDs. This means that you need to make D1's output a zero
- *    to turn D1 on. Try it! Make a program that controls LED D1.
+ *    to turn D1 on. Try it! Make a program that controls or flashes LED D1.
  */
