@@ -54,6 +54,14 @@ int main(void)
         
         // Add code for your Program Analysis and Programming Activities here:
 
+        if (SW3 ==0)
+       {
+           LATC=0b11110000;
+           __delay_ms(50);
+           LATC=0;
+           __delay_ms(50);
+       }
+
         // Activate bootloader if SW1 is pressed.
         if(SW1 == 0)
         {
