@@ -71,126 +71,126 @@ int main(void)
 }
 
 /* Program Analysis
- * 
- * 1. How many times do the LEDs flash if SW2 is quickly pressed and released?
- *    Do the LEDs keep flashing when SW2 is held? Look at the program and
- *    explain why this happens when SW2 is held.
- * 
- * 2. Explain the difference between the statements: LED3 = 0; and LED3 = 1;
- * 
- * 3. What voltage do you expect the microcontroller to output to LED D3 when
- *    the statement LED3 = 0; runs? What voltage do you expect the output to be
- *    when the statement LED3 = 1; runs?
- * 
- *    You can confirm the output voltage with a voltmeter if you have access
- *    to one. If you tried that, did the voltage match your prediction?
- * 
- * 4. The statement 'if(SW2 == 0)' uses two equal signs, while the statement
- *    'LED3 = 1;' uses a single equal sign. What operation is performed by one
- *    equal sign? What operation is performed by two equal signs?
- * 
- * 5. The following program code includes instructions that write to the PORTC
- *    output latches directly. Try it by copying and pasting this code below
- *    the existing SW2 'if' structure, at the location shown by the comment.
-
-        if(SW3 == 0)
-        {
-            LATC = 0b00000000;
-            __delay_ms(100);
-            LATC = 0b11110000;
-            __delay_ms(100);
-        }
-
- *    What happens when pushbutton SW3 is pressed? Identify at least one
- *    advantage and one disadvantage of controlling the LEDs using 'LATC' writes
- *    rather than through individual 'LEDn = x;' statements.
- * 
- * 6. Next, compare the operation of 'if' and 'while' structures to simulate
- *    momentary buttons. Replace the code you added in 5, above, with this code:
-
-        // Momentary button using if structure
-        if(SW3 == 0)
-        {
-            LED4 = 1;
-        }
-        else
-        {
-            LED4 = 0;
-        }
-
-        // Momentary button using while structure
-        while(SW4 == 0)
-        {
-            LED5 = 1;
-        }
-        LED5 = 0;
-
- *    First, try pressing and releasing SW3 and SW4 one at a time.
- * 
- *    Next, press and hold SW3 while pressing and releasing SW4. Does it work
- *    as expected?
- * 
- *    Next, try press and holding SW4 while pressing and releasing SW3. Does it
- *    work as expected? Explain the difference in operation between the 'if' and
- *    'while' structures making up the momentary button code.
- * 
- * 7. Let's explore logical conditions using 'if' statements. Replace the code
- *    added in 6, above, with this nested if code to make a logical AND
- *    condition that will light LED D4 only if both SW3 and SW4 are pressed:
-
-        // Nested if 'AND' code
-        if(SW3 == 0)
-        {
-            if(SW4 == 0)
-            {
-                LED4 = 1;
-            }
-            else
-            {
-                LED4 = 0;
-            }
-        }
-        else
-        {
-            LED4 = 0;
-        }
-
- *    Test the code to ensure it works as expected. Does the order of the if
- *    conditions matter? (eg. swap the conditional checks for SW3 and SW4)
- * 
- * 8. Next, replace the code from 7 with the following code which implements a
- *    logical AND conditional operator composed of two ampersands '&&':
+*
+* 1. How many times do the LEDs flash if SW2 is quickly pressed and released?
+*    Do the LEDs keep flashing when SW2 is held? Look at the program and
+*    explain why this happens when SW2 is held.
+* The LEDs flash only one time if SW2 is pressed only one time, but the LEDS keep flashing when SW2 is keep heldng. It is because the program built that when SW2 is pressed, all LEDS flashes and off for a delayed sec, so as the buttons is pressing this program is repeating.
+* 2. Explain the difference between the statements: LED3 = 0; and LED3 = 1;
+* The difference between the statement LED3 = 0; and LED3 = 1; is that LED3 = 0 is the statement when LED is turned off because there are no differences of charge, and LED3 = 1 is the statement that LED is on.
+* 3. What voltage do you expect the microcontroller to output to LED D3 when
+*    the statement LED3 = 0; runs? What voltage do you expect the output to be
+*    when the statement LED3 = 1; runs?
+* The voltage will be 0 when LED equals to 0, and the voltage will be 5 when the LED equals to 1.
+*    You can confirm the output voltage with a voltmeter if you have access
+*    to one. If you tried that, did the voltage match your prediction?
+* As I checked the voltage through the voltmeter, my prediction was right. Each statements measured close to 0 and 5 when it was measured on the circuit.
+* 4. The statement 'if(SW2 == 0)' uses two equal signs, while the statement
+*    'LED3 = 1;' uses a single equal sign. What operation is performed by one
+*    equal sign? What operation is performed by two equal signs?
+* The two equal signs represents for the conditional check so this tells they equals each other, and one equal sign is an assignment operator that we assign code to another.
+* 5. The following program code includes instructions that write to the PORTC
+*    output latches directly. Try it by copying and pasting this code below
+*    the existing SW2 'if' structure, at the location shown by the comment.
  
-        // Conditional 'AND' code
-        if(SW3 == 0 && SW4 == 0)
-        {
-            LED4 = 1;
-        }
-        else
-        {
-            LED4 = 0;
-        }
-
- *    Does '&&' work the same way as the nested if structures? Can you think of
- *    at least one advantage of using a logical conditional operator instead of
- *    nested if structures?
- * 
- * 9. Replace the double ampersand '&&' with double vertical bars '||)' to make
- *    a logical OR conditional operator. Your code should look like this:
-  
+       if(SW3 == 0)
+       {
+           LATC = 0b00000000;
+           __delay_ms(100);
+           LATC = 0b11110000;
+           __delay_ms(100);
+       }
+ 
+*    What happens when pushbutton SW3 is pressed? Identify at least one
+*    advantage and one disadvantage of controlling the LEDs using 'LATC' writes
+*    rather than through individual 'LEDn = x;' statements.
+When SW3 is pressed, all the LEDs quickly flashs. As using LATc it is easier and more fast to code program,but this can not control detailed. This can not control the delay between LEDs, and the speed of each LEDs.
+* 6. Next, compare the operation of 'if' and 'while' structures to simulate
+*    momentary buttons. Replace the code you added in 5, above, with this code:
+ 
+       // Momentary button using if structure
+       if(SW3 == 0)
+       {
+           LED4 = 1;
+       }
+       else
+       {
+           LED4 = 0;
+       }
+ 
+       // Momentary button using while structure
+       while(SW4 == 0)
+       {
+           LED5 = 1;
+       }
+       LED5 = 0;
+ 
+*    First, try pressing and releasing SW3 and SW4 one at a time.
+* Both LEDs flashs and off at the same time
+*    Next, press and hold SW3 while pressing and releasing SW4. Does it work
+*    as expected?
+* It works as expected, while the sw3 is pressing LED 5 is flahsing quick. 
+*    Next, try press and holding SW4 while pressing and releasing SW3. Does it
+*    work as expected? Explain the difference in operation between the 'if' and
+*    'while' structures making up the momentary button code.
+* While the sw4 is keep presssing, the LED 4 is not flashing. The switch that used the 'if' statement was able to control the other LED at the same time but the statement used'while' is not able to control another.
+* 7. Let's explore logical conditions using 'if' statements. Replace the code
+*    added in 6, above, with this nested if code to make a logical AND
+*    condition that will light LED D4 only if both SW3 and SW4 are pressed:
+ 
+       // Nested if 'AND' code
+       if(SW3 == 0)
+       {
+           if(SW4 == 0)
+           {
+               LED4 = 1;
+           }
+           else
+           {
+               LED4 = 0;
+           }
+       }
+       else
+       {
+           LED4 = 0;
+       }
+ 
+*    Test the code to ensure it works as expected. Does the order of the if
+*    conditions matter? (eg. swap the conditional checks for SW3 and SW4)
+* The order does not matter, only light flash when the both bottons are pressed.
+* 8. Next, replace the code from 7 with the following code which implements a
+*    logical AND conditional operator composed of two ampersands '&&':
+       // Conditional 'AND' code
+       if(SW3 == 0 && SW4 == 0)
+       {
+           LED4 = 1;
+       }
+       else
+       {
+           LED4 = 0;
+       }
+ 
+*    Does '&&' work the same way as the nested if structures? Can you think of
+*    at least one advantage of using a logical conditional operator instead of
+*    nested if structures?
+* It does work the same way as the nested if structures. The logical conditional operator code is much simpler than the nested if structures. It is easier to code.
+* 9. Replace the double ampersand '&&' with double vertical bars '||)' to make
+*    a logical OR conditional operator. Your code should look like this:
         // Conditional 'OR' code
-        if(SW3 == 0 || SW4 == 0)
-        {
-            LED4 = 1;
-        }
-        else
-        {
-            LED4 = 0;
-        }
+       if(SW3 == 0 || SW4 == 0)
+       {
+           LED4 = 1;
+       }
+       else
+       {
+           LED4 = 0;
+       }
+ 
+*    Describe the conditions under which LED4 turns on.
+* The LED4 turns on when the button SW3 is pressed. It does not have to be pressed together with the button SW4.
+* The LED4 turns on when the button SW4 is pressed. It does not have to be pressed together with the button SW3.
 
- *    Describe the conditions under which LED4 turns on.
- * 
- * 
+
  * Programming Activities
  * 
  * 1. The statement '__delay_ms(100);' creates a 100ms delay. Try changing one
