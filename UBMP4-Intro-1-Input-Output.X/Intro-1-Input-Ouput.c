@@ -33,24 +33,27 @@ int main(void)
 	{
         // If SW2 is pressed, make a flashy light pattern
         if(SW2 == 0)
-        {
+         /*{
             LED3 = 1;
-            __delay_ms(100);
+            LED6 = 1;
+            __delay_ms(200);
             LED4 = 1;
-            __delay_ms(100);
             LED5 = 1;
             __delay_ms(100);
-            LED6 = 1;
+            LED4 = 0;
+            LED5 = 0;
+            __delay_ms(200);
+            LED4 = 1;
+            LED5 = 1;
             __delay_ms(100);
             LED3 = 0;
-            __delay_ms(100);
-            LED4 = 0;
-            __delay_ms(100);
-            LED5 = 0;
-            __delay_ms(100);
             LED6 = 0;
             __delay_ms(100);
-        }
+            LED4 = 0;
+            LED5 = 0;
+
+        }*/
+
         
         // Add code for your Program Analysis and Programming Activities here:
 
@@ -61,6 +64,39 @@ int main(void)
            LATC=0;
            __delay_ms(50);
        }
+      { 
+        if(SW2 == 0) //Note G1
+        {
+            BEEPER = 1;
+            __delay_us(1420);
+            BEEPER = 0;
+            __delay_us(1420);
+        }
+        else
+        if(SW3 == 0) //Note C0
+        {
+            BEEPER = 1;
+            __delay_us(474);
+            BEEPER = 0;
+            __delay_us(474);
+        }
+        else
+        if(SW4 == 0) //Note D4
+        {
+            BEEPER = 1;
+            __delay_us(8512);
+            BEEPER = 0;
+            __delay_us(8512);
+        }
+        else
+        if(SW5 == 0) //Note E0
+        {
+            BEEPER = 1;
+            __delay_us(597);
+            BEEPER = 0;
+            __delay_us(597);
+        }
+      }   
 
         // Activate bootloader if SW1 is pressed.
         if(SW1 == 0)
@@ -195,11 +231,11 @@ When SW3 is pressed, all the LEDs quickly flashs. As using LATc it is easier and
  * 
  * 1. The statement '__delay_ms(100);' creates a 100ms delay. Try changing one
  *    or more of the delay values in the program to 500ms and see what happens.
- * 
+ * As the number of delay values change, the amount of time delay increases when the led flashs. 
  *    Can the delay be made even longer? Try 1000 ms. How big can the delay be
  *    before MPLAB-X produces an error message? (Hint: can you think of a fast
  *    and efficient way of guessing an unknown number?)
- * 
+ * The maximum delay value is 4205, when the number is greater than 4205 the program will produces an error message.
  * 2. The '__delay_ms();' function only accepts integers as delay values. To
  *    make delays shorter than 1ms, specify a delay in microseconds using the
  *    '__delay_us();' function. You won't be able to see such short LED flashes
@@ -218,7 +254,7 @@ When SW3 is pressed, all the LEDs quickly flashs. As using LATc it is easier and
  *    Try changing the delay values in both of the __delay_us(); functions.
  *    Does the pitch of the tone increase or decrease if the delay value is
  *    made smaller?
- * 
+ * If the delay value gets smaller, the pitch of the tone increases. 
  * 3. This code demonstrates a more compact way of toggling the beeper output
  *    using a logical NOT operator '!'. Replace the code above, with this code:
  
@@ -234,16 +270,68 @@ When SW3 is pressed, all the LEDs quickly flashs. As using LATc it is easier and
  *    be in after this code runs? While one advantage of this method is smaller
  *    code, can you think of one or more disadvantages based on its output when
  *    the button is released?
- * 
+ * The disadvantage of this code is that you can not define the state of the code. When the button is pressed, the beeper can be at state 1 or state 0.
  * 4. Using modified versions of the original SW2 'if' structure, create a
  *    program that makes a unique LED flashing pattern for each pushbutton.
- * 
+ *
+    // Modified versions of the original SW2 'if' structure
+     if(SW2 == 0)
+        {
+            LED3 = 1;
+            LED6 = 1;
+            __delay_ms(200);
+            LED4 = 1;
+            LED5 = 1;
+            __delay_ms(100);
+            LED4 = 0;
+            LED5 = 0;
+            __delay_ms(100);
+            LED4 = 1;
+            LED5 = 0;
+            __delay_ms(100);
+            LED3 = 0;
+            LED6 = 0;
+            __delay_ms(100);
+            
+        }
+
  *    Test each of your flashing patterns. Describe what happens when more than
  *    one button is held. Do all of the patterns try to flash the LEDs at the
  *    same time, or sequentially? Explain why this is.
- * 
+ * All the patterns try to flash at the same time, it is because the computer needs more specific information to program the seperate patterns. 
  * 5. Create a program that makes a different tone for each pushbutton.
- * 
+ *   if(SW2 == 0) //Note G1
+        {
+            BEEPER = 1;
+            __delay_us(1420);
+            BEEPER = 0;
+            __delay_us(1420);
+        }
+        else
+        if(SW3 == 0) //Note C0
+        {
+            BEEPER = 1;
+            __delay_us(474);
+            BEEPER = 0;
+            __delay_us(474);
+        }
+        else
+        if(SW4 == 0) //Note D4
+        {
+            BEEPER = 1;
+            __delay_us(8512);
+            BEEPER = 0;
+            __delay_us(8512);
+        }
+        else
+        if(SW5 == 0) //Note E0
+        {
+            BEEPER = 1;
+            __delay_us(597);
+            BEEPER = 0;
+            __delay_us(597);
+        }
+
  *    Test each tone by pressing each button individually. Next, press two or
  *    more buttons at the same time. Describe what the tone waveform would look
  *    like when more than one button is held.
